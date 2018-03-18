@@ -1,4 +1,4 @@
-[ice40](ice40/images/iceblink40.jpg)
+![ice40](ice40/images/iceblink40.jpg)
 
 # Learning FGPAs
 
