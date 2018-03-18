@@ -1,4 +1,6 @@
-# Learning FGPA
+[ice40](ice40/images/iceblink40.jpg)
+
+# Learning FGPAs
 
 In Feb 2018, I started looking into FPGAs. 
 
