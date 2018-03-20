@@ -33,9 +33,7 @@ module top (
         end
         // END - init hack 
 
-        // generate a 2 KHz clock
         reg [10:0] pwm_value;
-
         reg led_on;
 
         // set LED on/off
@@ -49,8 +47,8 @@ module top (
                 end
             else  
                 begin
-                    // set PWM vakue
-                    if (counter[18])
+                    // set PWM value
+                    if (!counter[18:0])
                         pwm_value <= pwm_value + 100;
 
                     
