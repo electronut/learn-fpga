@@ -33,8 +33,9 @@ module top (
         end
         // END - init hack 
 
-        reg [10:0] pwm_value;
-        reg led_on;
+        reg [10:0] pwm_value_1, pwm_value_2, pwm_value_3, pwm_value_4;
+        reg led_on_1, led_on_2, led_on_3, led_on_4;
+        reg [24:0] delay1, delay2, delay3;
 
         // set LED on/off
         always @(posedge clk) 
@@ -42,16 +43,48 @@ module top (
             // initialise rot
             if (!resetn) 
                 begin 
-                    led_on <= 0;
-                    pwm_value <= 10;
+                    pwm_value_1 <= 1;
+                    pwm_value_2 <= 1;
+                    pwm_value_3 <= 1;
+                    pwm_value_4 <= 1;
+                    delay1 <= 100000;
+                    delay2 <= 200000;
+                    delay3 <= 300000;
                 end
             else  
                 begin
                     // set PWM value
-                    if (!counter[18:0])
-                        pwm_value <= pwm_value + 100;
+                    if (!counter[17:0])
+                        begin
+                            pwm_value_1 <= pwm_value_1 << 1;
+                            if (pwm_value_1 == 0)
+                                pwm_value_1 <= 1;
+                        end
 
-                    
+                    // LED 2 
+                    if (!counter[17:0] && (counter > delay1))
+                        begin
+                            pwm_value_2 <= pwm_value_2 << 1;
+                            if (pwm_value_2 == 0)
+                                pwm_value_2 <= 1;
+                        end
+
+                    // LED 3
+                    if (!counter[17:0] && (counter > delay2))
+                        begin
+                            pwm_value_3 <= pwm_value_3 << 1;
+                            if (pwm_value_3 == 0)
+                                pwm_value_3 <= 1;
+                        end
+
+                    // LED 3
+                    if (!counter[17:0] && (counter > delay3))
+                        begin
+                            pwm_value_4 <= pwm_value_4 << 1;
+                            if (pwm_value_4 == 0)
+                                pwm_value_4 <= 1;
+                        end
+
                     // F = 3.3 MHz clk 
                     // 0 th bit of counter will change at F/2 
                     // Nth bit of counter will change at F/2/(2^N)
@@ -62,14 +95,34 @@ module top (
 
                     // inc counter and set PWM
                     counter <= counter + 1;
-                    if (counter[10:0] < pwm_value)
-                        led_on <= 1;
+
+                    // LED 1
+                    if (counter[10:0] < pwm_value_1)
+                        led_on_1 <= 1;
                     else 
-                        led_on <= 0;
+                        led_on_1 <= 0;
+
+                    // LED 2
+                    if (counter[10:0] < pwm_value_2)
+                        led_on_2 <= 1;
+                    else 
+                        led_on_2 <= 0;
+
+                    // LED 3
+                    if (counter[10:0] < pwm_value_3)
+                        led_on_3 <= 1;
+                    else 
+                        led_on_3 <= 0;
+
+                    // LED 3
+                    if (counter[10:0] < pwm_value_4)
+                        led_on_4 <= 1;
+                    else 
+                        led_on_4 <= 0;
                 end        
         end
 
         // set LED output
-        assign {LED2, LED3, LED4, LED5} = {4{led_on}};
+        assign {LED2, LED3, LED4, LED5} = {led_on_1, led_on_2, led_on_3, led_on_4};
 
 endmodule
