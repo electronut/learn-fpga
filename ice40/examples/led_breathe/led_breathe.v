@@ -47,9 +47,9 @@ module top (
                     pwm_value_2 <= 1;
                     pwm_value_3 <= 1;
                     pwm_value_4 <= 1;
-                    delay1 <= 100000;
-                    delay2 <= 200000;
-                    delay3 <= 300000;
+                    delay1 <= 200000;
+                    delay2 <= 400000;
+                    delay3 <= 600000;
                 end
             else  
                 begin
@@ -77,7 +77,7 @@ module top (
                                 pwm_value_3 <= 1;
                         end
 
-                    // LED 3
+                    // LED 4
                     if (!counter[17:0] && (counter > delay3))
                         begin
                             pwm_value_4 <= pwm_value_4 << 1;
