@@ -11,6 +11,8 @@ module tb ();
     reg clk = 0;
     wire [7:0] dataIn = 8'd9;
     wire tx;
+    wire data_ready = 1;
+    wire tx_busy;
 
     initial begin
         $dumpfile("testbench.vcd");
@@ -22,7 +24,9 @@ module tb ();
     simple_uart uart1(
         .uclk(clk),
         .dataIn(dataIn),
-        .tx(tx)
+        .data_ready(data_ready),
+        .tx(tx),
+        .tx_busy(tx_busy)
     );
 
     always @ ( * ) begin
