@@ -15,8 +15,15 @@ module top (
 );
 
         // clk is at 3.3 MHz 
-        reg [21:0] counter;
-        reg [3:0] rot;
+
+        reg 9600_clk;               // 9600 Hz
+        reg [7:0] bcounter;         // counter for generating baud rate clock
+
+        // for UART transmission
+        wire [7:0] dataIn = 8'd9;
+        wire tx;
+        wire data_ready = 1;
+        wire tx_busy;
 
         // BEGIN - init hack
         // iCE40 does not allow registers to initialised to 
@@ -33,18 +40,33 @@ module top (
         end
         // END - init hack 
 
+        // generate 9600 baud clock
         always @(posedge clk) 
         begin
-            // initialise rot
-            if (!resetn) 
-                rot <= 4'b0001;
-            else  
-                // inc counter and rotate
+            if (bcounter == 172)
                 begin
-                    counter <= counter + 1;
-                    if (!counter) 
-                        rot <= {rot[2:0], rot[3]};
-                end        
+                    9600_clk <= 1;
+                    bcounter <= 0;
+                end
+            else 
+                begin
+                    9600_clk <= 0;
+                    bcounter <= bcounter + 1;
+                end
+        end
+
+        // instantiate UART module
+        simple_uart uart1(
+            .uclk(9600_clk),
+            .dataIn(dataIn),
+            .data_ready(data_ready),
+            .tx(tx),
+            .tx_busy(tx_busy)
+        );
+
+        always @(posedge clk) 
+        begin
+            
         end
 
         // set LED output

@@ -14,6 +14,11 @@ module tb ();
     wire data_ready = 1;
     wire tx_busy;
 
+    wire [7:0] dataOut;
+    wire rx_busy;
+
+    wire rx = tx;
+
     initial begin
         $dumpfile("testbench.vcd");
         $dumpvars;
@@ -26,7 +31,10 @@ module tb ();
         .dataIn(dataIn),
         .data_ready(data_ready),
         .tx(tx),
-        .tx_busy(tx_busy)
+        .tx_busy(tx_busy),
+        .dataOut(dataOut),
+        .rx(rx),
+        .rx_busy(rx_busy)
     );
 
     always @ ( * ) begin
