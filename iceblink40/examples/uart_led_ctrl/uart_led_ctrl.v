@@ -8,16 +8,15 @@
 */
 module top (
        input  clk,
-       output LED2,
-       output LED3,
-       output LED4,
-       output LED5
+       output tx_out
 );
 
         // clk is at 3.3 MHz 
+        reg [21:0] counter;
+        reg [7:0] count;
 
-        reg 9600_clk;               // 9600 Hz
-        reg [7:0] bcounter;         // counter for generating baud rate clock
+        reg clk_9600;               // 9600 Hz
+        reg [21:0] bcounter;         // counter for generating baud rate clock
 
         // for UART transmission
         wire [7:0] dataIn = 8'd9;
@@ -40,36 +39,33 @@ module top (
         end
         // END - init hack 
 
-        // generate 9600 baud clock
+        
         always @(posedge clk) 
         begin
-            if (bcounter == 172)
+            // generate 9600 baud clock
+            if (bcounter == 86)
+                clk_9600 <= ~clk_9600;
+            bcounter <= bcounter + 1;
+
+            // send data periodically
+            counter <= counter + 1;
+            if (!counter) 
                 begin
-                    9600_clk <= 1;
-                    bcounter <= 0;
-                end
-            else 
-                begin
-                    9600_clk <= 0;
-                    bcounter <= bcounter + 1;
+                    dataIn = count;
+                    data_ready = 1;
+                    count = count + 1;
                 end
         end
 
         // instantiate UART module
         simple_uart uart1(
-            .uclk(9600_clk),
+            .uclk(clk_9600),
             .dataIn(dataIn),
             .data_ready(data_ready),
             .tx(tx),
             .tx_busy(tx_busy)
         );
 
-        always @(posedge clk) 
-        begin
-            
-        end
-
-        // set LED output
-        assign {LED2, LED3, LED4, LED5} = rot;
+    assign tx_out = clk_9600;
 
 endmodule
