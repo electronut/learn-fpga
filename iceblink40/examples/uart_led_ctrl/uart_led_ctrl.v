@@ -66,6 +66,6 @@ module top (
             .tx_busy(tx_busy)
         );
 
-    assign tx_out = clk_9600;
+    assign tx_out = tx;
 
 endmodule
