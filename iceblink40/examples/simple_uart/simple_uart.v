@@ -1,7 +1,7 @@
 /*
-    uart_led_ctrl.v
+    simple_uart_tx.v
 
-    Control LEDs via UART.
+    Simple UART (TX only).
     
     electronut.in
 
@@ -16,7 +16,7 @@ module top (
         reg [7:0] count;
 
         reg clk_9600;               // 9600 Hz
-        reg [21:0] bcounter;         // counter for generating baud rate clock
+        reg [21:0] bcounter;        // counter for generating baud rate clock
 
         // for UART transmission
         reg data_ready = 1;
@@ -24,21 +24,6 @@ module top (
 
         reg [7:0] data = 8'd0;
         wire [7:0] dataIn = data;
-
-        // BEGIN - init hack
-        // iCE40 does not allow registers to initialised to 
-        // anything other than 0
-        // For workaround see:
-        // https://github.com/YosysHQ/yosys/issues/103
-        reg [7:0] resetn_counter = 0;
-        assign resetn = &resetn_counter;
-
-        always @(posedge clk) 
-        begin
-            if (!resetn)
-                resetn_counter <= resetn_counter + 1;
-        end
-        // END - init hack 
 
         always @(posedge clk) 
         begin

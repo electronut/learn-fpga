@@ -1,5 +1,5 @@
 /*
-    simple_uart.v
+    simple_uart_tx.v
 
     Simple UART implementation
     
