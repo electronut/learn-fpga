@@ -14,11 +14,6 @@ module tb ();
     wire data_ready = 1;
     wire tx_busy;
 
-    wire [7:0] dataOut;
-    wire rx_busy;
-
-    wire rx = tx;
-
     initial begin
         $dumpfile("testbench.vcd");
         $dumpvars;
@@ -26,20 +21,33 @@ module tb ();
         $finish;
     end
 
-    simple_uart uart1(
-        .uclk(clk),
-        .dataIn(dataIn),
-        .data_ready(data_ready),
-        .tx(tx),
-        .tx_busy(tx_busy),
-        .dataOut(dataOut),
-        .rx(rx),
-        .rx_busy(rx_busy)
+    
+    reg [13:0] value = 2233;
+    wire [19:0] value_bcd;
+    wire [3:0] cathodes;
+    wire [6:0] anodes;
+    
+    seven_seg_cc_4d s7 (
+        .clk(clk),
+        .value(value),
+        .cathodes(cathodes),
+        .anodes(anodes)
     );
+    
+    
+    /*
+    bin_to_bcd bb1 (
+
+        .clk(clk),
+        .value_bin(value),
+        .start(1'b1),
+        .value_bcd(value_bcd),
+        .done(done)
+    );
+    */
 
     always @ ( * ) begin
         #5 clk <= ~clk; // 100 ns clock
     end
 
 endmodule
-

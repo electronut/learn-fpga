@@ -1,0 +1,19 @@
+set_io clk 13
+set_io LED2 59
+set_io LED3 56
+set_io trig 87
+set_io echo 85
+
+set_io A 86
+set_io B 83
+set_io C 81
+set_io D 79
+set_io E 74
+set_io F 72
+set_io G 69
+set_io DP 66
+
+set_io D1 19
+set_io D2 16
+set_io D3 15
+set_io D4 100

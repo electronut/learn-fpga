@@ -5,7 +5,7 @@ DEVICE    = 1k
 FOOTPRINT = vq100
 
 # Files
-FILES = simple_uart.v simple_uart_tx.v
+FILES = simple_uart.v top.v
 
 .PHONY: all clean burn
 
@@ -22,9 +22,14 @@ all:
 synth:
 	# synthesize using Yosys
 	yosys -p "synth_ice40 -top top -blif $(BUILD)/$(PROJ).blif" $(FILES)
-	
-burn:
-	iceprog $(BUILD)/$(PROJ).bin
 
+burn:
+	iCEburn -ew $(BUILD)/$(PROJ).bin
+
+sim:
+	iverilog -o tb.out -s tb testbench.v simple_uart.v 
+	vvp tb.out 
+	gtkwave testbench.vcd      
+	
 clean:
 	rm build/*
