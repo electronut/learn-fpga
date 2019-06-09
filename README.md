@@ -6,7 +6,7 @@ I think the best way to understand something is to try and build something inter
 
 # Project Index
 
-This is a summary of projects you will find in this respository.
+This is a summary of projects you will find in this repository.
 
 ## Latice iCE40HX1k
 
@@ -20,4 +20,4 @@ These projects use the Lattice iCE40HX1k and the *icestorm* open source FPGA too
 
 These projects use the Lattice iCE40HX1k and the *icestorm* open source FPGA toolchain.
 
-- **ultrasonic** - talking to ultrasonic sensor HC-SR04 and displaying distance on a 4-digitt 7-segment display
+- **ultrasonic** - talking to ultrasonic sensor HC-SR04 and displaying distance on a 4-digit 7-segment display
