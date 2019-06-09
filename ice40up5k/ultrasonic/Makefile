@@ -1,11 +1,11 @@
 # Project setup
-PROJ      = uart_led_ctrl
+PROJ      = ultrasonic
 BUILD     = ./build
 DEVICE    = 1k
 FOOTPRINT = vq100
 
 # Files
-FILES = uart_led_ctrl.v simple_uart.v
+FILES = top.v seven_seg_cc_4d.v bin_to_bcd.v edge_detect.v
 
 .PHONY: all clean burn
 
@@ -24,7 +24,7 @@ synth:
 	yosys -p "synth_ice40 -top top -blif $(BUILD)/$(PROJ).blif" $(FILES)
 	
 burn:
-	iceprog $(BUILD)/$(PROJ).bin
+	iCEburn -ew $(BUILD)/$(PROJ).bin
 
 clean:
 	rm build/*

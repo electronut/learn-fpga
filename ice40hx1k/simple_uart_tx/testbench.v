@@ -22,7 +22,7 @@ module tb ();
     end
 
     simple_uart uart1(
-        .uclk(clk),
+        .clk(clk),
         .dataIn(dataIn),
         .data_ready(data_ready),
         .tx(tx),
