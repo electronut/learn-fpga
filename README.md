@@ -14,7 +14,6 @@ These projects use the Lattice iCE40HX1k and the *icestorm* open source FPGA too
 
 - **led_chaser** - a "hello world" for FPGA
 - **led_breathe** - LEDs and PWM 
-- **simple_uart_tx** - implementing a simple Tx-only UART.
 
 ## Latice iCE40UP5k
 
