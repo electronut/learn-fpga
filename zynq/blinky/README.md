@@ -11,6 +11,8 @@ You upload code separately (RAM, not flash, in this case) to the PS and PL. The 
 
 There's no source code for this project. Instead, you can follow the video below to create this project.
 
+https://www.youtube.com/watch?v=-J7kvz2BwHw
+
 
 ## What you need
 
@@ -18,7 +20,7 @@ A few things to note:
 
 - You need [z-turn-lite.tcl][3] for setting up the Zynq PS.
 - You need a Xilinx platform cable or equivalent to upload code via JTAG
-- You need a USB to UART to observe the output. We used [Bumpy][1].
+- You need a USB to UART to observe the output. We used [Bumpy][2].
 
 Also, here's a reference for header *J6* of the z-turn-lite cape, for setting up the LED:
 
