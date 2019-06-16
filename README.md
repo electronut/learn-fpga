@@ -24,3 +24,11 @@ These projects use the Lattice iCE40HX1k and the *icestorm* open source FPGA too
 ## Migen Examples
 
 - **blinky** - a simple blinky in Migen/Python
+
+## Xilinx Zynq
+
+These projects use the Xilinx Zynq SoCs which combine FPGA (PL) with ARM cores (PS).
+
+- **blinky** - this project (video, text, no source) shows you how to create a blinky on the PL of Xilinx XC7Z007S using the clock from the PS, using Vivado 2018.3.
+
+
