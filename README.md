@@ -31,4 +31,5 @@ These projects use the Xilinx Zynq SoCs which combine FPGA (PL) with ARM cores (
 
 - **blinky** - this project (video, text, no source) shows you how to create a blinky on the PL of Xilinx XC7Z007S using the clock from the PS, using Vivado 2018.3.
 
+- **simple_vga** - a simple VGA project with a red grid and a yellow moving square.
 
