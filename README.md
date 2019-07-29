@@ -33,3 +33,5 @@ These projects use the Xilinx Zynq SoCs which combine FPGA (PL) with ARM cores (
 
 - **simple_vga** - a simple VGA project with a red grid and a yellow moving square.
 
+- **video_ip_test** - using Xilinx video IPs to show test patterns via VGA.
+ 
