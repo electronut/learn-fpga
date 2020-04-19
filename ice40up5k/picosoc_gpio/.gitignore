@@ -1,0 +1,17 @@
+/spiflash_tb.vcd
+/spiflash_tb.vvp
+/lice40up5k.asc
+/lice40up5k.bin
+/lice40up5k.json
+/lice40up5k.log
+/lice40up5k.rpt
+/lice40up5k_syn.v
+/lice40up5k_syn_tb.vvp
+/lice40up5k_tb.vvp
+/lice40up5k_fw.elf
+/lice40up5k_fw.hex
+/lice40up5k_fw.bin
+/lice40up5k_sections.lds
+/testbench.vcd
+/cmos.log
+

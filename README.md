@@ -21,6 +21,8 @@ These projects use the Lattice iCE40HX1k and the *icestorm* open source FPGA too
 
 - **ultrasonic** - talking to ultrasonic sensor HC-SR04 and displaying distance on a 4-digit 7-segment display
 
+  **picosoc_gpio** - simpe RISC-V based Picosoc demo that shows how to enable interrupts.
+
 ## Migen Examples
 
 - **blinky** - a simple blinky in Migen/Python
